@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!---Coding By CoderGirl | www.codinglabweb.com--->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login | Trash2Money</title>
+  <!---Custom CSS File--->
+  
+  <link rel="shortcut icon" href="images/s2.png" type="">
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<style>
+  /* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  min-height: 100vh;
+  width: 100%;
+  background: #0a97b0;
+}
+.container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  max-width: 430px;
+  width: 100%;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+.container .registration{
+  display: none;
+}
+#check:checked ~ .registration{
+  display: block;
+}
+#check:checked ~ .login{
+  display: none;
+}
+#check{
+  display: none;
+}
+.container .form{
+  padding: 2rem;
+}
+.form header{
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+ .form input{
+   height: 60px;
+   width: 100%;
+   padding: 0 15px;
+   font-size: 17px;
+   margin-bottom: 1.3rem;
+   border: 1px solid #ddd;
+   border-radius: 6px;
+   outline: none;
+ }
+ .form input:focus{
+   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+ }
+.form a{
+  font-size: 16px;
+  color: #009579;
+  text-decoration: none;
+}
+.form a:hover{
+  text-decoration: underline;
+}
+.form input.button{
+  color: #fff;
+  background: #0a97b0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 1.7rem;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.form input.button:hover{
+  background: #0a97b0;
+}
+.signup{
+  font-size: 17px;
+  text-align: center;
+}
+.signup label{
+  color: #0a97b0;
+  cursor: pointer;
+}
+.signup label:hover{
+  text-decoration: underline;
+}
+
+</style>
+<body>
+
+  
+  <div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+      <header>Login</header>
+      <form action="#">
+        <span id="err1"></span>
+        <input type="text" placeholder="Enter your email" id="email">
+        <input type="password" placeholder="Enter your password" id="passwd">
+        <a href="#">Forgot password?</a>
+        <input type="button" class="button" value="Login" id="loginBtn">
+      </form>
+      <div class="signup">
+        <span class="signup">Don't have an account?
+         <label for="check">Signup</label>
+        </span>
+      </div>
+    </div>
+    <div class="registration form">
+      <header>Signup</header>
+      <form action="#">
+        <i id="err2"></i>
+        <input type="text" placeholder="Enter your email" id="newEmail">
+        <input type="password" placeholder="Create a password" id="newPasswd">
+        <input type="password" placeholder="Confirm your password" id="cPasswd">
+        <input type="button" class="button" value="Signup" id="signUpBtn">
+      </form>
+      <div class="signup">
+        <span class="signup">Already have an account?
+         <label for="check">Login</label>
+        </span>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  $('#loginBtn').click(function(){
+    signIn()
+  })
+
+  $('#signUpBtn').click(function(){
+    signup()
+  })
+
+ function signup(){
+  newEmail = $('#newEmail').val()
+  newPasswd = $('#newPasswd').val()
+  cPasswd = $('#cPasswd').val()
+
+  if(newPasswd != cPasswd){
+    $('#err2').text('Password do not match')
+    return}
+
+  data = {'email': newEmail, 'passwd': newPasswd}
+  $.ajax({
+    url: 'auth_new',
+    data: data,
+    type: 'POST',
+    success: function (data) {
+        //console.log(data.status)
+        $('#err2').text(data.status)
+        $('#newPasswd').val('')
+        $('#cPasswd').val('')
+    },
+    
+});
+
+ }
+ 
+ function signIn(){
+  email = $('#email').val()
+  passwd = $('#passwd').val()
+  data = {'email': email, 'passwd': passwd}
+
+  if(passwd.length > 4){
+      $.ajax({
+        url: 'auth',
+        data: data,
+        type: 'POST',
+        success: function (data) {
+            $('#err1').text(data.status)
+            $('#passwd').val('')
+              },
+            
+      });
+  }
+ }
+</script>
+</html>
