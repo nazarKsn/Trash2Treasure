@@ -8,7 +8,7 @@ app.set("view options", {layout: false});
 app.use(express.static(__dirname + '/public'));
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://jd_project:jd_project@one.048bqrc.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://Trash2treasure:Trash2treasure@one.048bqrc.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, {
     serverApi: {
@@ -29,6 +29,10 @@ app.get('/index.html', function(req, res) {
     res.render('public/index.html');
 });
 
+//dashboard
+app.get('/userDashboard.html', function(req, res){
+    res.render('public/userDashboard.html')
+})
 //service
 app.get('/service.html', function(req, res) {
     res.render('public/service.html');
@@ -175,15 +179,16 @@ app.post('/auth', async function(req, res) {
     data = { 'email': email, 'passwd': passwd }
     try {
         await client.connect();
-        const database = client.db("Jd_project");
-        const db = database.collection("Jd_project");
+        const database = client.db("Trash2treasure");
+        const db = database.collection("Trash2treasure");
         try{
             doc = await db.findOne(data)
             if(doc == null){
                 
                 res.send({'status': 'invalid username or password.'})
             } else{
-                res.send({'status': 'success successfully.'})
+                res.send({'status': '102'})
+                
             }
         }catch(e){console.log(e)}
       } catch(e){console.log(e)}
@@ -198,8 +203,8 @@ app.post('/auth_new', async function(req, res) {
 
     try {
         await client.connect();
-        const database = client.db("Jd_project");
-        const db = database.collection("Jd_project");
+        const database = client.db("Trash2treasure");
+        const db = database.collection("Trash2treasure");
         try{
             doc = await db.findOne(data)
             if(doc == null){
