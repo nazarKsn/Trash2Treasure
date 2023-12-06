@@ -8,7 +8,7 @@ app.set("view options", {layout: false});
 app.use(express.static(__dirname + '/public'));
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://Trash2treasure:Trash2treasure@one.048bqrc.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://jd_project:jd_project@one.048bqrc.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, {
     serverApi: {
@@ -179,8 +179,8 @@ app.post('/auth', async function(req, res) {
     data = { 'email': email, 'passwd': passwd }
     try {
         await client.connect();
-        const database = client.db("Trash2treasure");
-        const db = database.collection("Trash2treasure");
+        const database = client.db("Jd_project");
+        const db = database.collection("Jd_project");
         try{
             doc = await db.findOne(data)
             if(doc == null){
@@ -203,8 +203,8 @@ app.post('/auth_new', async function(req, res) {
 
     try {
         await client.connect();
-        const database = client.db("Trash2treasure");
-        const db = database.collection("Trash2treasure");
+        const database = client.db("Jd_project");
+        const db = database.collection("Jd_project");
         try{
             doc = await db.findOne(data)
             if(doc == null){
