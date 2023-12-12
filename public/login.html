@@ -187,6 +187,10 @@ body{
         data: data,
         type: 'POST',
         success: function (data) {
+          if (data.status == '102'){
+            window.location.replace('/userDashboard.html')
+          }
+          
             $('#err1').text(data.status)
             $('#passwd').val('')
               },
