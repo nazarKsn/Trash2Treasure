@@ -8,7 +8,7 @@ A project on Web application that helps people earn money while they dispose rec
 
 <trash-2-treasure.netlify.app>
 
-You can visit the link to see how the front end was designed, the technology used for the front end is Html and Jquery
+You can visit the link to see how the front end was designed, the technology used for the front end is Html, CSS and Jquery
 
 ---
 
