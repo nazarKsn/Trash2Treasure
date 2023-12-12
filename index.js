@@ -21,7 +21,7 @@ const client = new MongoClient(uri, {
   
 
 //Landing page
-app.get('/', function(req, res) {
+app.get('/landing_page.html', function(req, res) {
     res.render('public/landing_page.html');
 });
 
