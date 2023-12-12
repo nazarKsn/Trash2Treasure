@@ -84,6 +84,6 @@ In the project directory, you can run:
 ### 'node index.js'
 
 Runs the app in the development mode.\
-Open [http://localhost:3030](http://localhost:3030) to view it in your browser.
+Open [http://localhost:80](http://localhost:80) to view it in your browser.
 
 The page will reload when you make changes.
