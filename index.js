@@ -195,7 +195,7 @@ app.post('/auth', async function(req, res) {
 
 });
 
-//regester
+//register
 app.post('/auth_new', async function(req, res) {
     email = req.body.email
     passwd = req.body.passwd
