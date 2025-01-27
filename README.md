@@ -14,7 +14,7 @@ You can visit the link to see how the front end was designed, the technology use
 
 ## Team Members
 
-John Ngenuka (Front end & Back end)
+John Masaba (Front end & Back end)
 
 ---
 
